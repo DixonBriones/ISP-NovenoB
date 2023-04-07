@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-content>
+    <table>
+      <thead>
+        <tr>
+          <th >N</th>
+          <th >Cédula</th>
+          <th >Nombre</th>
+          <th>Experticia </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tutor.tutores;  let i = index">
+          <th >{{ i+1 }}</th>
+          <td >{{ item.cedula }}</td>
+          <td >{{ item.nombre }}</td>
+          <td >{{ item.experticia }}</td>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+
+
