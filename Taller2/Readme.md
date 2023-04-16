@@ -2,19 +2,19 @@
 
 # Funcionalidades
 
-Comando para creacion de un proyecto
+Comando para creacion de un proyecto<br>
 *docker-compose run --rm ng new proyectonuevo
 
-Comando para creacion de un componente
+Comando para creacion de un componente<br>
 *docker-compose run --rm ng generate component noticia
 
-Comando para intalacion de la libreria moment
+Comando para intalacion de la libreria moment<br>
 *docker-compose run --rm npm install moment
 
-Comando para creacion de un sevicio en angular
+Comando para creacion de un sevicio en angular<br>
 *docker-compose run --rm ng generate service noticia
 
-Comando para creacion de un guard en angular
+Comando para creacion de un guard en angular<br>
 *docker-compose run --rm ng generate guard noticia
 
 # Cambios para el host
@@ -23,7 +23,7 @@ En caso de angular es necesario ubicar "--poll 2000" en el CMD del dockerfile
 
 # Ejecucion
  
-Se ejecuta con el comando
+Se ejecuta con el comando<br>
 docker-compose up -d --build server
 
 Captura del docker corriendo
