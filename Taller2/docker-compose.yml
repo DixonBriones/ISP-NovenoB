@@ -1,0 +1,25 @@
+version: '1.0'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: dockerfiles/server.dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./src:/app
+    ports:
+      - 4200:4200
+  npm:    
+    build:
+      context: .
+      dockerfile: dockerfiles/npm.dockerfile
+    volumes:
+      - ./src:/app
+  ng:    
+    build:
+      context: .
+      dockerfile: dockerfiles/ng.dockerfile
+    volumes:
+      - ./src:/app

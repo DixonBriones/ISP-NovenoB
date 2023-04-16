@@ -1,0 +1,118 @@
+<div class="container mt-4">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+          role="tab" aria-controls="home" aria-selected="true">Opinion</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="personal-tab">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                              <tr class="bg-header text-white">
+                                <th scope="col" colspan="2">Datos Personales</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td>{{ datos.full_name | titlecase }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Número de cédula</th>
+                                    <td>{{ datos.identification_card }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Correo</th>
+                                    <td>{{ datos.email }}</td>
+                                </tr>
+                  
+                                <tr>
+                                    <th>Número celular</th>
+                                    <td>{{ datos.phone }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                              <tr class="bg-header text-white">
+                                <th scope="col" colspan="2">Opinion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Motivo de la opinion</th>
+                                    <td>{{ datos.reason }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Lugar del incidente</th>
+                                    <td>{{ datos.incident_location }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Detalle del incidente</th>
+                                    <td>{{ datos.date }}</td>
+                                </tr>
+                  
+                                <tr>
+                                    <th>Hora del incidente</th>
+                                    <td>{{ datos.hour }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                              <tr class="bg-header text-white">
+                                <th scope="col" colspan="2">Detalles de la opinion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Implicado</th>
+                                    <td>{{ datos.implicated }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Experiencia</th>
+                                    <td>{{ datos.experience }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Detalle</th>
+                                    <td>{{ datos.detail }}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <th>Observacion</th>
+                                    <td>{{ datos.observation }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Desea atencion personalizada</th>
+                                    <td *ngIf="!datos.personalized_attention">No</td>
+                                    <td *ngIf="datos.personalized_attention">Si</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

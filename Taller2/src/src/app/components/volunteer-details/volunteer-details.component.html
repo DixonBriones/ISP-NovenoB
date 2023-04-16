@@ -1,0 +1,264 @@
+<div class="container mt-4">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+        role="tab" aria-controls="home" aria-selected="true">Datos personales</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="reference-tab" data-bs-toggle="tab" data-bs-target="#reference" type="button"
+        role="tab" aria-controls="reference" aria-selected="false">Referencias</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="personal-tab">
+
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" colspan="2">Datos Personales</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Nombre</th>
+                  <td>{{ datos.full_name | titlecase }}</td>
+                </tr>
+
+                <tr>
+                  <th>Número de cédula</th>
+                  <td>{{ datos.identification_card }}</td>
+                </tr>
+
+                <tr>
+                  <th>Fecha de nacimiento</th>
+                  <td>{{ datos.birth_date }}</td>
+                </tr>
+
+                <tr>
+                  <th>Género</th>
+                  <td>{{ datos.gender }}</td>
+                </tr>
+
+                <tr>
+                  <th>Estado civil</th>
+                  <td>{{ datos.marital_status }}</td>
+                </tr>
+
+                <tr>
+                  <th>Dirección domiciliaria</th>
+                  <td>{{ datos.address }}</td>
+                </tr>
+
+                <tr>
+                  <th>Tipo de sangre</th>
+                  <td>{{ datos.blood_type }}</td>
+                </tr>
+
+                <tr class="alig-middle">
+                  <th>Alergias</th>
+                  <td>{{ datos.allergy }}</td>
+                </tr>
+
+                <tr class="align-middle">
+                  <th>Ha sido dado de baja <br> en alguna institución</th>
+                  <td *ngIf="!datos.institutional_expulsion">No</td>
+                  <td *ngIf="datos.institutional_expulsion">Si</td>
+                </tr>
+
+                <tr class="align-middle">
+                  <th>Familiares con capacidades <br> especiales a cargo</th>
+                  <td *ngIf="!datos.disability_charge">No</td>
+                  <td *ngIf="datos.disability_charge">Si</td>
+                </tr>
+
+                <tr class="align-middle">
+                  <th>Enfermedades catastróficas</th>
+                  <td *ngIf="!datos.catastrophic_illness">No</td>
+                  <td *ngIf="datos.catastrophic_illness">Si</td>
+                </tr>
+
+                <tr class="align-middle">
+                  <th>Carnet de CONADIS</th>
+                  <td *ngIf="!datos.conadis">No</td>
+                  <td *ngIf="datos.conadis">Si</td>
+                </tr>
+
+
+              </tbody>
+            </table>
+
+          </div>
+          <div class="col">
+
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" colspan="2">Información de contacto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Correo</th>
+                  <td>{{ datos.email }}</td>
+                </tr>
+
+                <tr>
+                  <th>Número celular</th>
+                  <td>{{ datos.cellphone }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-bordered">
+              <tbody>
+                <tr class="bg-header text-white">
+                  <th colspan="2">Formación académica</th>
+                </tr>
+
+                <tr>
+                  <th>Nivel de educacion</th>
+                  <td>{{ datos.education_level }}</td>
+                </tr>
+
+                <tr>
+                  <th>Ocupación</th>
+                  <td>{{ datos.occupation }}</td>
+                </tr>
+
+
+                <tr>
+                  <th>Cursos</th>
+                  <td>{{ datos.training | titlecase }}</td>
+                </tr>
+
+                <tr>
+                  <th>Certificado Bachillerato</th>
+                  <td>
+                    <a [href]="urlBachelor" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" colspan="2">Documentos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Currículum</th>
+                  <td>
+                    <a [href]="urlCurriculum" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Certificado de no tener antecedentes</th>
+                  <td>
+                    <a [href]="urlAntecedentes" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Certificado de no haber sido dado de baja</th>
+                  <td>
+                    <a [href]="urlBaja" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Certificado COVID</th>
+                  <td>
+                    <a [href]="urlCovid" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr *ngIf="datos.conadis_file">
+                  <th>Carnet CONADIS</th>
+                  <td>
+                    <a [href]="urlConadis" target="_blank" class="text-decoration-none">
+                      Ver<i class="fa-solid fa-file-pdf text-danger ms-2"></i>
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="reference" role="tabpanel" aria-labelledby="reference-tab">
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" colspan="2">Referencia 1</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Nombre</th>
+                  <td>{{ datos.name_reference_1 | titlecase }}</td>
+                </tr>
+                <tr>
+                  <th>Parentesco</th>
+                  <td>{{ datos.relationship_reference_1 | titlecase }}</td>
+                </tr>
+                <tr>
+                  <th>Numero de contacto</th>
+                  <td>{{ datos.phone_reference_1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" colspan="2">Referencia 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Nombre</th>
+                  <td>{{ datos.name_reference_2 | titlecase }}</td>
+                </tr>
+                <tr>
+                  <th>Parentesco</th>
+                  <td>{{ datos.relationship_reference_2 | titlecase }}</td>
+                </tr>
+                <tr>
+                  <th>Numero de contacto</th>
+                  <td>{{ datos.phone_reference_2 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

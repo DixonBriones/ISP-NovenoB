@@ -1,0 +1,145 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4">
+      <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" [(ngModel)]="query" />
+        <span class="input-group-text border-0" id="search-addon" (click)="ListarTransparencia()">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="contenedor-boton">
+        <button type="button" class="btn btn-primary " id="buttonIngreso" data-bs-toggle="modal" data-bs-target="#formModal" >Agregar documento</button>
+      </div>
+    </div>
+  </div>
+    <table class="table table-striped table-hover table-bordered mt-2">
+        <thead>
+          <tr class="bg-header text-white">
+            <th scope="col">N°</th>
+            <th scope="col">Año Fiscal</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Tipo</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of transparency | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td> {{item.fiscalyear}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.category}}</td>
+            <td><button  class="btn btn-primary" (click)="MostrarTransparenciaId(item.id)" data-bs-toggle="modal" data-bs-target="#formModalModificar">Editar</button>
+             <button style="margin-right: 20px;" (click)="EliminarTransparencia(item.id)" class="btn btn-secondary">Eliminar</button></td>
+          </tr>
+        </tbody>
+    </table>    
+    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+</div>
+
+
+<!-- Modal ingreso -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalCenterTitle">Registar Transparencia</h5>
+          <button #closeModal type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" [formGroup]="transparencyForm">
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="inputTitle" class="form-label">Titulo</label>
+                <input class="form-control" id="inputTitle" placeholder="" formControlName="title" >
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col ">
+                <label for="inputCategoria" class="form-label">Categoria</label>
+                <select class="form-select" id="inputCategoria" formControlName="category">
+                  <option selected hidden>Seleccione una categoria</option>
+                  <option value="Rendición de cuentas">Rendición de cuentas</option>
+                  <option value="Proceso de compras públicas">Proceso de compras públicas</option>
+                  <option value="Regulación y procedimientos internos">Regulaciones y procedimientos internos</option>
+                  <option value="Base legal">Base legal</option>
+                  <!--<option *ngFor="let item of category" value="{{item.id}}">{{item.name}}</option>-->
+                </select>
+              </div>
+              <div class="col">
+                <label for="inputYear" class="form-label" >Año Fiscal</label>
+                <input class="form-control" id="inputTitle" placeholder="" type="date" formControlName="fiscalyear">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="formFile" class="form-label">Archivo transparencia</label>
+                <input class="form-control" type="file" id="formFile"  (change)="getFile($event)" accept=".pdf" formControlName="file">
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="cerrarboton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="GuardarTrasparecia()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modal Modificar -->
+<div class="modal fade" id="formModalModificar" tabindex="-1" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalCenterTitle">Editar Transparencia</h5>
+        <button #closeModal2 type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" [formGroup]="transparencyFormUpdate">
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for="inputTitle" class="form-label">Titulo</label>
+              <input class="form-control" id="inputTitle" placeholder="" formControlName="titleUpdate">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col ">
+              <label for="inputCategoria" class="form-label">Categoria</label>
+              <select class="form-select" id="inputCategoria" formControlName="categoryUpdate">
+                <option selected hidden>Seleccione una categoria</option>
+                <option value="Rendición de cuentas">Rendición de cuentas</option>
+                <option value="Proceso de compras públicas">Proceso de compras públicas</option>
+                <option value="Regulación y procedimientos internos">Regulaciones y procedimientos internos</option>
+                <option value="Base legal">Base legal</option>
+                <!--<option *ngFor="let item of category" value="{{item.id}}">{{item.name}}</option>-->
+              </select>
+            </div>
+            <div class="col">
+              <label for="inputYear" class="form-label" >Año Fiscal</label>
+              <input class="form-control" id="inputTitle" placeholder="" type="date" formControlName="fiscalyearUpdate">
+            </div>
+          </div>
+
+
+        </form>
+        <pdf-viewer [src]="urlfile+datos.file"
+        [render-text]="true"
+        [original-size]="false"
+        style="width: 100%; height: 400px"
+        ></pdf-viewer>
+      </div>
+      <div class="modal-footer">
+        <button id="cerrarboton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="ActualizarTransparencia(datos.id)">Modificar</button>
+      </div>
+    </div>
+  </div>
+</div>

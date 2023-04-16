@@ -1,0 +1,19 @@
+    <nav class="navbar navbar-expand bg-primary">
+        <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToggle()">
+            <i class="fa fa-bars"></i>
+        </div> 
+        <a href="" class="navbar-brand px-4 text-light" >Bomberos Manta</a>
+        <div class="navbar-collapse">
+
+        </div>
+
+        <div class="profile-logo dropstart">
+            <button class="btn btn-outline dropdown-toggle text-light" data-bs-toggle="dropdown">
+                Usuario
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="cerrarsesion()" class="dropdown-item" >Cerrar sesion</a></li>
+            </ul>
+        </div>
+        
+    </nav>

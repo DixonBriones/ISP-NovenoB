@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <Form enctype="multipart/form-data" [formGroup]="newsForm">
+        
+        <div class="row mb-3">
+            <div class="col">
+              <label for="inputTitle" class="form-label">Titulo</label>
+              <input class="form-control" id="inputTitle" placeholder="" formControlName="title">
+            </div>
+            <div class="col-3">
+                <label for="inputDate" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="inputDate" placeholder="" formControlName="datePublish">
+              </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+              <label for="inputContent" class="form-label">Contenido</label>
+              <angular-editor id="inputContent" formControlName="content" [placeholder]="'Escriba la noticia'" ></angular-editor>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <label for="inputfiles" class="form-label">Imagenes</label>
+                <input class="form-control" (change)="onFileChange($event)" type="file" id="inputfiles" multiple formControlName="images" accept="image/*">
+            </div>
+        </div>
+    </Form>
+    <div >
+        <img *ngFor="let image of imagesVar" [src]="image" height="100px" width="100px" >
+    </div>
+    <div class="contenedor-boton" *ngIf="id==null">
+        <button type="button" class="btn btn-primary " id="buttonIngreso"  (click)="guardarNoticia()" >Guardar noticia</button>
+    </div>
+    <div class="contenedor-boton" *ngIf="id!=null">
+        <button type="button" class="btn btn-primary " id="buttonIngreso" (click)="actualizarNews(id)" >Modificar noticia</button>
+    </div>
+
+</div>
