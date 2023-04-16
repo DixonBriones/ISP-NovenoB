@@ -1,5 +1,7 @@
 # Taller 1
 
+Se ejecuta con el comando "docker-compose up --build"
+
 Captura de ingreso de información mediante postman  
 [![Captura1.png](https://i.postimg.cc/Y0WKtwXz/Captura-de-pantalla-4.png)](https://postimg.cc/0KPHCh1z)
 
