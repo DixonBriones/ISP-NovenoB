@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Tutorado {
+  id: ID!
+  identificacion: String!
+  nombre: String!
+  direccion: String!
+  estado: Boolean!
+}
+
+type Query {
+  tutorados: [Tutorado!]!
+  tutorado(id: ID!): Tutorado!
+}
+
+type Mutation {
+  createTutorado(createTutoradoInput: CreateTutoradoInput!): Tutorado!
+  updateTutorado(updateTutoradoInput: UpdateTutoradoInput!): Tutorado!
+  removeTutorado(id: ID!): Tutorado!
+}
+
+input CreateTutoradoInput {
+  identificacion: String!
+  nombre: String!
+  direccion: String!
+  estado: Boolean!
+}
+
+input UpdateTutoradoInput {
+  identificacion: String
+  nombre: String
+  direccion: String
+  estado: Boolean
+  id: ID!
+}
